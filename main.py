@@ -171,6 +171,20 @@ class Menu:
         self.save_data() # 추가 즉시 파일에 저장
         print("\n✅ 퀴즈가 성공적으로 추가되었습니다!")
 
+    def display_quiz_list(self):
+        """
+        3번 메뉴: 현재 저장된 모든 퀴즈의 목록(문제 내용)을 출력하는 메소드
+        """
+        # 1. 퀴즈가 없는 경우 처리
+        if not self.quizzes:
+            print("\n[알림] 등록된 퀴즈가 없습니다. 퀴즈를 먼저 추가해 주세요.")
+            return
+
+        print(f"\n--- 현재 등록된 퀴즈 목록 (총 {len(self.quizzes)}개) ---")
+        # 2. 저장된 퀴즈를 하나씩 돌면서 문제 내용만 출력
+        for i, quiz in enumerate(self.quizzes, 1):
+            print(f"{i}. {quiz.question}")
+
     def run(self):
         """
         메인 메뉴 루프를 실행하여 사용자의 선택을 기다리는 메소드
@@ -189,9 +203,7 @@ class Menu:
                 if choice == 1: self.play_quiz()
                 elif choice == 2: self.add_quiz()
                 elif choice == 3:
-                    print("\n--- 현재 등록된 퀴즈 목록 ---")
-                    for i, q in enumerate(self.quizzes, 1):
-                        print(f"{i}. {q.question}")
+                    self.display_quiz_list()
                 elif choice == 4:
                     print(f"\n현재 시스템 최고 점수: {self.best_score}점")
                 elif choice == 5:

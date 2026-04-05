@@ -1,12 +1,41 @@
-class QuizGame:
-    """게임 흐름 및 메뉴를 관리하는 클래스"""
+import json
+import os
+class Quiz:
+    """개별 퀴즈 정보를 담는 클래스"""
+    def __init__(self, question, choices, answer):
+        self.question = question
+        self.choices = choices
+        self.answer = int(answer)
+
+    def to_dict(self):
+        """JSON 저장을 위해 딕셔너리로 변환"""
+        return {
+            "question": self.question,
+            "choices": self.choices,
+            "answer": self.answer
+        }
+
+    def display_quiz(self, index):
+        """문제와 선택지를 화면에 출력"""
+        print(f"\nQ{index}. {self.question}")
+        for i, choice in enumerate(self.choices, 1):
+            print(f"  {i}) {choice}")
+
+    def check_answer(self, user_input):
+        """정답 여부 확인"""
+        return self.answer == user_input
+
+
+
+class Menu:
+    """메뉴 관리 클래스"""
     def __init__(self):
         # 퀴즈 목록과 최고 점수를 저장할 준비
         self.quizzes = []
         self.best_score = 0
 
-    def get_valid_input(self, prompt, min_val, max_val):
-        """잘못된 입력을 걸러내는 공용 함수 (미션: 공통 입력/예외 처리 기준 만족)"""
+    def get_valid_input(self, prompt, min_val, max_val): 
+        """예외처리 메소드"""
         while True:
             try:
                 user_input = input(prompt).strip() # 앞뒤 공백 제거

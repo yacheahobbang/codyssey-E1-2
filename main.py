@@ -25,7 +25,19 @@ class Quiz:
         """정답 여부 확인"""
         return self.answer == user_input
 
-
+def set_default_quizzes(self):
+        """최초 실행 시 사용할 5개의 기본 퀴즈 (주제: 파이썬 상식)"""
+        
+        # 요구사항: 각 퀴즈는 문제, 선택지(4개), 정답을 포함하며 Quiz 클래스의 인스턴스로 생성한다.
+        q1 = Quiz("Python의 창시자는?", ["Guido van Rossum", "Elon Musk", "Bill Gates", "Mark Zuckerberg"], 1)
+        q2 = Quiz("리스트에 요소를 추가하는 메서드는?", ["add()", "push()", "append()", "insert_end()"], 3)
+        q3 = Quiz("불리언(Boolean) 타입이 아닌 것은?", ["True", "False", "None", "1 == 1"], 3)
+        q4 = Quiz("JSON의 약자는?", ["Java Standard Object Notation", "JavaScript Object Notation", "Just Simple Object Note", "Jupyter System Object Network"], 2)
+        q5 = Quiz("Python에서 주석을 쓸 때 사용하는 기호는?", ["//", "/* */", "", "#"], 4)
+        
+        # 요구사항: 5개 이상의 퀴즈를 직접 작성한다.
+        self.quizzes = [q1, q2, q3, q4, q5]
+        self.save_data() # 세팅 후 파일에 저장
 
 class Menu:
     """메뉴 관리 클래스"""

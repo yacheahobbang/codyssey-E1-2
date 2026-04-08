@@ -69,6 +69,28 @@ class QuizGame:
             self.save_data()
             return True
         return False
+    
+    def update_best_score(self, score):
+        """
+        퀴즈 종료 시 호출되어 최고 점수를 비교하고 갱신하는 메소드
+        """
+        if score > self.best_score:
+            print(f"🎊 축하합니다! 최고 점수 경신: {self.best_score} -> {score}")
+            self.best_score = score
+            self.save_data() # 파일에 즉시 저장
+            return True
+        return False
+
+    def display_best_score(self):
+        """
+        4번 메뉴: 최고 점수 확인 기능을 담당하는 메소드
+        """
+        print("\n--- 🏆 최고 점수 확인 ---")
+        # 요구사항: 아직 퀴즈를 풀지 않은 경우(0점) 처리
+        if self.best_score == 0:
+            print("아직 퀴즈를 푼 기록이 없습니다. 첫 번째 도전에 나서보세요!")
+        else:
+            print(f"현재까지 기록된 최고 점수는 {self.best_score}점입니다.")
 
 
 class Menu:
